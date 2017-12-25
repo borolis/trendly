@@ -49,7 +49,7 @@ public class ViewParser {
             return result;
         }
         catch (Exception e) {
-            System.out.println("access denied");
+            System.out.println("access denied [" + e.toString()+"]");
         }
         return "NaN";
     }
@@ -85,7 +85,7 @@ public class ViewParser {
             return as[1];
         }
         catch (Exception e) {
-            System.out.println("access denied");
+            System.out.println("access denied [" + e.toString()+"]");
         }
         return "NaN";
     }
@@ -121,7 +121,7 @@ public class ViewParser {
         }
 
         catch (Exception e) {
-            System.out.println("access denied");
+            System.out.println("access denied [" + e.toString()+"]");
         }
         return "NaN";
     }
