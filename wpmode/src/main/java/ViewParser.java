@@ -44,7 +44,7 @@ public class ViewParser {
         try {
             all = vkPhpQuery(wallUrl, "views");
             String[] arr = all.split(splitter);
-            int index = arr[arr.length-1].indexOf(" просм");
+            int index = arr[arr.length-1].indexOf(" vie");
             String result = arr[arr.length-1].substring(0, index);
             return result;
         }
