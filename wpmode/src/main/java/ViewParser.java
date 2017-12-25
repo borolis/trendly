@@ -49,7 +49,11 @@ public class ViewParser {
             return result;
         }
         catch (Exception e) {
+
             System.out.println("access denied [" + e.toString()+"]");
+            System.out.println("all[" + all + "]");
+            System.out.println("wallurl[" + wallUrl + "]");
+
         }
         return "NaN";
     }
@@ -86,6 +90,9 @@ public class ViewParser {
         }
         catch (Exception e) {
             System.out.println("access denied [" + e.toString()+"]");
+            System.out.println("all[" + all + "]");
+            System.out.println("wallurl[" + wallUrl + "]");
+
         }
         return "NaN";
     }
@@ -122,6 +129,9 @@ public class ViewParser {
 
         catch (Exception e) {
             System.out.println("access denied [" + e.toString()+"]");
+            System.out.println("all[" + all + "]");
+            System.out.println("wallurl[" + wallUrl + "]");
+
         }
         return "NaN";
     }
