@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+{% if message %}
+<div class="uk-alert-danger" uk-alert>
+   <a class="uk-alert-close" uk-close></a>
+   <p>{{ message }}</p>
+</div>
+{% endif %}
+<div class="uk-text-center">
+    <div class="uk-container-center">
+        <img src="{{url_for('static', filename='logo.png')}}" style="height: 5rem; margin-top: 5rem; margin-bottom: 2rem;"></img>
+        <form action="{{ url_for('page_user_login') }}" method="post">
+            <fieldset class="uk-fieldset uk-placeholder">
+                <div class="uk-inline">
+                    <span class="uk-form-icon" uk-icon="icon: user"></span>
+                    <input class="uk-input uk-form-width-medium" type="text" name="username" placeholder="Username">
+                </div><br>
+                <div class="uk-inline">
+                    <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                    <input class="uk-input uk-form-width-medium" type="password" name="password" placeholder="Password">
+                </div><br>
+                <button class="uk-button uk-button-primary uk-form-width-medium" type="submit" value="Login">Log in</button>
+            </fieldset>
+        </form>
+        <button class="uk-button uk-button-link" uk-toggle="target: #registration-modal">Need an account?</button>
+        <div id="registration-modal" uk-modal>
+            <div class="uk-modal-dialog">
+                <button class="uk-modal-close-default" type="button" uk-close></button>
+                <div class="uk-modal-header">
+                    <h2 class="uk-modal-title">Registration</h2>
+                </div>
+                <div class="uk-modal-body">Currently closed</div>
+                <div class="uk-modal-footer"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

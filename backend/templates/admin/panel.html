@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>You`re logged in as administrator</h1>
+{% if session.logged_in %}
+<a href="{{ url_for('logout') }}">Logout</a>
+{% endif %}
+<br>
+<h3>Create new user</h3>
+<form action="{{ url_for('add_user') }}" method="post">
+    <dl>
+        <dt>Username:
+        <dd><input type="text" name="newU_username">
+        <dt>Name:
+        <dd><input type="text" name="newU_firstname">
+        <dt>Surname:
+        <dd><input type="text" name="newU_surname">
+        <dt>Email:
+        <dd><input type="text" name="newU_email">
+        <dt>Password:
+        <dd><input type="password" name="newU_password">
+        <dd><input type="submit" value="Create">
+    </dl>
+</form>
+<h3>Registred users:</h3>
+<table>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Password</th>
+    </tr>
+    {% for i in users %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.username}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.password}}</td>
+            <form action="{{ url_for('remove_user') }}" method="post">
+                <td><button type="submit" name="ID" value="{{i.id}}">Remove</button></td>
+            </form>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}}

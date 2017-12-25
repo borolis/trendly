@@ -1,0 +1,62 @@
+{% macro nav_link(endpoint, name) %}
+{% if request.endpoint.endswith(endpoint) %}
+    <li class="uk-active"><a href=""><span class="uk-text-large">{{name}}</span></a></li>
+{% else %}
+    <li><a href="{{url_for(endpoint)}}"><span class="uk-text-large">{{name}}</span></a></li>
+{% endif %}
+{% endmacro %}
+
+{% macro add_link() %}
+{% if request.endpoint.endswith('page_user_dashboard') %}
+    <li class="uk-active"><a href="" uk-toggle="target: #modal-add-new-project"><span class="uk-text-large">+</span></a></li>
+{% endif %}
+{% endmacro %}
+
+<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+    <nav class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+                {{nav_link('page_user_dashboard', 'DASHBOARD')}}
+                {{add_link()}}
+            </ul>
+        </div>
+        <div class="uk-navbar-center">
+            <img src="{{url_for('static', filename='logo.png')}}" style="height: 3rem;" class="uk-navbar-item uk-logo">
+        </div>
+        <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+            <li>
+                <a href="#"><span class="uk-text-primary" uk-icon="icon: user">{{ user }}</span></a>
+                <div class="uk-navbar-dropdown">
+                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                        <li><a href="{{url_for('page_user_settings')}}" uk-icon="icon: cog">Settings </a></li>
+                        <li class="uk-nav-divider"></li>
+                        <li><a href="{{url_for('logout')}}" uk-icon="icon: sign-out">Logout </a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        </div>
+        <div id="modal-add-new-project" uk-modal>
+            <div class="uk-modal-dialog">
+                <button class="uk-modal-close-default" type="button" uk-close></button>
+                <div class="uk-modal-header">
+                    <h2 class="uk-modal-title">Add new tag</h2>
+                </div>
+                <form action="{{ url_for('user_add_project') }}" method="post">
+                <div class="uk-modal-body">
+                    <fieldset class="uk-fieldset">
+                        <div class="uk-inline">
+                            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                            <input class="uk-input" type="text" name="name" placeholder="Tagname">
+                        </div><br>
+                    </fieldset>
+                </div>
+                <div class="uk-modal-footer">
+                    <button class="uk-button uk-button-primary uk-form-width-medium" type="submit" value="Login">Save</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </nav>
+</div>

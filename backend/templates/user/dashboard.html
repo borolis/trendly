@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{url_for('static', filename='base.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='dashboard.css')}}">
+{% include "user/navbar.html" %}
+<div class="content">
+    <div class="uk-grid-collapse" uk-grid>
+    {% for item in tile_list %}
+        <div class="uk-card uk-card-default uk-card-hover uk-visible-toggle uk-card-small uk-inline uk-width-1-5@m  uk-margin-small-left uk-margin-small-top" id="card-{{ item.id }}">
+            <div class="uk-card-header">
+                <span class="uk-card-title">{{ item.name}}</span><br>
+            </div>
+            <div class="uk-card-body">
+                <span>CTR: 666%</span>
+            </div>
+            <div class="uk-card-footer">
+                <button class="uk-button uk-button-default" uk-toggle="target: #modal-{{ item.id }}">Show more</button>
+            </div>
+            <div class="uk-hidden-hover uk-position-top-right uk-position-small uk-position-absolute">
+                <ul class="uk-iconnav">
+                    <li title="Update" uk-tooltip><a href="{{ url_for('user_update_project', project_id = item.id) }}" uk-icon="icon: future"></a></li>
+                    <li title="Edit" uk-tooltip><a href="#" uk-icon="icon: file-edit"></a></li>
+                    <li title="Remove" uk-tooltip><a href="{{ url_for('user_remove_project', project_id = item.id) }}" uk-icon="icon: close" uk-toggle="target: #card-{{ item.id }}; animation: uk-animation-fade"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="modal-{{ item.id }}" uk-modal>
+            <div class="uk-modal-dialog">
+                <button class="uk-modal-close-default" type="button" uk-close></button>
+                <div class="uk-modal-header">
+                    <h2 class="uk-modal-title">{{ item.name }}</h2>
+                </div>
+                <div class="uk-modal-body">всякая информация и т.д.<br>и какие-нибудь графики<br>и еще что-нибудь</div>
+                <div class="uk-modal-footer"></div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
